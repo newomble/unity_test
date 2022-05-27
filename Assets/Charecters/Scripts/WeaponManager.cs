@@ -16,7 +16,8 @@ public class WeaponManager : MonoBehaviour
 
     void Awake()
     {
-        sourceOriginPosition = GameObject.Find("PlayerCharecter").transform;
+        //Gets the transform component of the GameObject the script is a component of
+        sourceOriginPosition = GetComponent<Transform>();
     }
 
     // Update is called once per frame

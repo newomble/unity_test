@@ -13,5 +13,6 @@ public class PistolBehavior : MonoBehaviour
     private void ShootEventListener(object sender, WeaponManager.ShootEventArgs e)
     {
         Debug.Log("Hit - Shoot Listener");
+        Debug.Log(e.originPosition.ToString());
     }
 }
