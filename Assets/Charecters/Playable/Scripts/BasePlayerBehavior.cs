@@ -21,6 +21,11 @@ public class BasePlayerBehavior : MonoBehaviour
 
     private void FixedUpdate()
     {
+        this.moveCharecter();
+    }
+
+    private void moveCharecter()
+    {
         if (this.hadMovementInput())
         {
             Vector2 nextPosition = this.calculateNextPosition();
@@ -30,6 +35,7 @@ public class BasePlayerBehavior : MonoBehaviour
             }
         }
     }
+
 
     private bool hadMovementInput()
     {
