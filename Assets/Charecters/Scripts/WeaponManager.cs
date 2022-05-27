@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Timers;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
@@ -12,24 +13,34 @@ public class WeaponManager : MonoBehaviour
 
     public event EventHandler<ShootEventArgs> ShootEventHandler;
 
-    private Transform sourceOriginPosition;
+    private Transform parentTransform;
+    private Timer shootTimer;
 
     void Awake()
     {
         //Gets the transform component of the GameObject the script is a component of
-        sourceOriginPosition = GetComponent<Transform>();
+        parentTransform = GetComponent<Transform>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        SendShootEvent();
+        StartCoroutine("SendShootEvents");
     }
 
-    private void SendShootEvent()
+    private IEnumerator SendShootEvents()
     {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            SendShootEvent();
+        }
+    }
+
+    public void SendShootEvent()
+    {
+        Debug.Log("Send Event");
         ShootEventHandler?.Invoke(this, new ShootEventArgs {
-            originPosition = sourceOriginPosition.position
+            originPosition = parentTransform.position
         });
     }
 }

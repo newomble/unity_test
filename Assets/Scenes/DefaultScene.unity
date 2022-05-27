@@ -141,6 +141,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootWeapons: {fileID: 507716537}
+  weaponPrefab: {fileID: 37975806}
+--- !u!4 &37975806 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7488775881390960316, guid: 02b10ec7552f95643a44a8d3ae7ed421, type: 3}
+  m_PrefabInstance: {fileID: 4054457386642184874}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &507716530 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6165442867131817860, guid: bb8503af610fdc444824d89a2abac528, type: 3}
