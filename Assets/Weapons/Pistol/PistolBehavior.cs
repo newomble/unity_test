@@ -2,18 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PistolBehavior : MonoBehaviour
+public class PistolBehavior : WeaponBase
 {
-    [SerializeField] private WeaponManager shootWeapons;
-    [SerializeField] Transform weaponPrefab;
-    void Awake()
+ 
+    public override string Name => "Pistol";
+
+    public override string Description => "Shoots in a straight line.";
+
+    private float delay = 1f;
+    public override float Delay { get => delay; set => delay = value; }
+
+    public override void Upgrade()
     {
-        shootWeapons.ShootEventHandler += this.ShootEventListener;
+        Debug.Log("Upgrade Called");
     }
 
-    private void ShootEventListener(object sender, WeaponManager.ShootEventArgs e)
+    public override void Fire()
     {
-        Debug.Log("Hit Shoot Listener");
-        Instantiate(weaponPrefab, e.originPosition, Quaternion.identity);
+        Debug.Log(originLocation.position.ToString());
+        Debug.Log("Fire called");
     }
 }

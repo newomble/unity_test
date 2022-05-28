@@ -1,46 +1,66 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Timers;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public class ShootEventArgs : EventArgs
-    {
-        public Vector2 originPosition; 
-    }
 
-    public event EventHandler<ShootEventArgs> ShootEventHandler;
+    public bool WeaponsActive { get; set; }
 
+    private Dictionary<string, IWeapon> weapons;
     private Transform parentTransform;
-    private Timer shootTimer;
 
     void Awake()
     {
         //Gets the transform component of the GameObject the script is a component of
         parentTransform = GetComponent<Transform>();
+        weapons = new Dictionary<string, IWeapon>();
+        WeaponsActive = true;
     }
 
     private void Start()
     {
-        StartCoroutine("SendShootEvents");
+        PistolBehavior pistol = gameObject.AddComponent<PistolBehavior>();
+        AddWeapon(pistol);
     }
 
-    private IEnumerator SendShootEvents()
+    public void AddWeapon(IWeapon newWeapon)
     {
-        while (true)
+        if (weapons.ContainsKey(newWeapon.Name)) {
+            weapons[newWeapon.Name].Upgrade();
+        } 
+        else
         {
-            yield return new WaitForSeconds(1f);
-            SendShootEvent();
+            InitWeapon(newWeapon);
+            weapons.Add(newWeapon.Name, newWeapon);
         }
     }
 
-    public void SendShootEvent()
+    public void StartAllWeapons()
     {
-        Debug.Log("Send Event");
-        ShootEventHandler?.Invoke(this, new ShootEventArgs {
-            originPosition = parentTransform.position
-        });
+        WeaponsActive = true;
+        foreach (KeyValuePair<string, IWeapon> weapon in weapons)
+        {
+            weapon.Value.StartRoutine();
+        }
+    }
+
+    public void StopAllWeapons()
+    {
+        WeaponsActive = false;
+        foreach (KeyValuePair<string, IWeapon> weapon in weapons)
+        {
+            weapon.Value.StopRoutine();
+        }
+    }
+
+    private void InitWeapon(IWeapon weapon)
+    {
+        weapon.Init(parentTransform);
+        if (WeaponsActive)
+        {
+            weapon.StartRoutine();
+        }
     }
 }
