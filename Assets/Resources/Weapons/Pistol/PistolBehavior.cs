@@ -22,5 +22,10 @@ public class PistolBehavior : WeaponBase
     {
         GameObject pistol = getPrefab(prefabPath);
         Instantiate(pistol, originLocation.position, Quaternion.identity);
+        /**
+         * TODO:
+         *   Add transform
+         *   Figure out how to kill
+         * */
     }
 }
