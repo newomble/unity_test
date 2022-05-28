@@ -9,6 +9,5 @@ public interface IWeapon
     void Init(Transform originLocation);
     void StartRoutine();
     void StopRoutine();
-    void Fire();
     void Upgrade();
 }

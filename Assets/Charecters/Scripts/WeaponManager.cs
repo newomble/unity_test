@@ -21,7 +21,7 @@ public class WeaponManager : MonoBehaviour
 
     private void Start()
     {
-        PistolBehavior pistol = gameObject.AddComponent<PistolBehavior>();
+        PistolWeapon pistol = gameObject.AddComponent<PistolWeapon>();
         AddWeapon(pistol);
     }
 
