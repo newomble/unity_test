@@ -20,8 +20,7 @@ public class BulletBehavior : MonoBehaviour
 
     void Update()
     {
-        //FIXME: dividing by 2 so I don't have to figure out the camera yet and can see it destroyed
-        float horizon = GetCameraXMax() / 2;
+        float horizon = GetCameraXMax();
         if (rb.position.x  > -horizon && rb.position.x < horizon)
         {
             float newX = direction ? rb.position.x + speed : rb.position.x - speed;
