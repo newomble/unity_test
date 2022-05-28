@@ -21,5 +21,11 @@ public class PistolBehavior : WeaponBase
     {
         Debug.Log(originLocation.position.ToString());
         Debug.Log("Fire called");
+        GameObject pistol = getPrefab("Pistol/Pistol");
+        if (pistol == null)
+        {
+            Debug.Log("Pistol is null");
+        }
+        Instantiate(pistol, originLocation.position, Quaternion.identity);
     }
 }
