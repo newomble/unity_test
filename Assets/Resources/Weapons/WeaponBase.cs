@@ -10,10 +10,10 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     public abstract float Delay { get; set; }
 
     /// <summary>
-    /// Path to the projectile prefab. These must be in the Resources folder.
+    /// Path to the projectile prefab. These must be in the Resources/Weapons folder.
     /// EX:
     ///     If the real path is `{{Project}}/Resources/Weapons/Pistol/Bullet.prefab`. 
-    ///     The prefab path is `Weapons/Pistol/Bullet`
+    ///     The prefab path is `Pistol/Bullet`
     ///</summary>
     public abstract string PrefabPath { get; }
 
