@@ -6,6 +6,8 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     public abstract string Name { get; }
     public abstract string Description { get; }
     public abstract float Delay { get; set; }
+    public abstract void Upgrade();
+    public abstract void Fire();
 
     private readonly string resourceFolder = "Weapons/";
     public Transform originLocation; 
@@ -14,10 +16,6 @@ public abstract class WeaponBase : MonoBehaviour, IWeapon
     {
         this.originLocation = originLocation;
     }
-
-    public abstract void Upgrade();
-
-    public abstract void Fire();
 
     public void StartRoutine()
     {

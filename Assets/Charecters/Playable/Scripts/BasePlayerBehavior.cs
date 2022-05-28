@@ -26,29 +26,28 @@ public class BasePlayerBehavior : MonoBehaviour
 
     private void moveCharecter()
     {
-        if (this.hadMovementInput())
+        if (this.HadMovementInput())
         {
-            Vector2 nextPosition = this.calculateNextPosition();
-            if (this.canMoveTo(nextPosition))
+            Vector2 nextPosition = this.CalculateNextPosition();
+            if (this.CanMoveTo(nextPosition))
             {
                 rb.MovePosition(nextPosition);
             }
         }
     }
 
-
-    private bool hadMovementInput()
+    private bool HadMovementInput()
     {
         return directionalInput != Vector2.zero;
     }
 
-    private bool canMoveTo(Vector2 nextPosition)
+    private bool CanMoveTo(Vector2 nextPosition)
     {
         //TODO
         return true;
     }
 
-    private Vector2 calculateNextPosition()
+    private Vector2 CalculateNextPosition()
     {
         return rb.position + movespeed * Time.fixedDeltaTime * directionalInput;
     }
