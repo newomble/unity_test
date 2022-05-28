@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PistolBehavior : WeaponBase
 {
- 
+    private float delay = 1f;
+    private string prefabPath = "Pistol/Pistol";
+
     public override string Name => "Pistol";
 
     public override string Description => "Shoots in a straight line.";
 
-    private float delay = 1f;
     public override float Delay { get => delay; set => delay = value; }
 
     public override void Upgrade()
@@ -19,13 +20,7 @@ public class PistolBehavior : WeaponBase
 
     public override void Fire()
     {
-        Debug.Log(originLocation.position.ToString());
-        Debug.Log("Fire called");
-        GameObject pistol = getPrefab("Pistol/Pistol");
-        if (pistol == null)
-        {
-            Debug.Log("Pistol is null");
-        }
+        GameObject pistol = getPrefab(prefabPath);
         Instantiate(pistol, originLocation.position, Quaternion.identity);
     }
 }
